@@ -1,0 +1,73 @@
+.
+├── seed
+│   ├── create-db.js
+│   └── seed-users.js
+├── src
+│   ├── app
+│   │   ├── (admin)
+│   │   │   ├── auth
+│   │   │   │   ├── auth.module.css
+│   │   │   │   └── page.js
+│   │   │   ├── layout.js
+│   │   │   └── user
+│   │   ├── (public)
+│   │   │   ├── layout.js
+│   │   │   ├── loading.js
+│   │   │   ├── page.js
+│   │   │   └── users
+│   │   │       ├── [uid]
+│   │   │       │   ├── @modal
+│   │   │       │   │   ├── (.)image
+│   │   │       │   │   │   ├── loading.js
+│   │   │       │   │   │   └── page.js
+│   │   │       │   │   └── default.js
+│   │   │       │   ├── image
+│   │   │       │   │   └── page.js
+│   │   │       │   ├── layout.js
+│   │   │       │   ├── loading.js
+│   │   │       │   ├── not-found.js
+│   │   │       │   └── page.js
+│   │   │       ├── active
+│   │   │       │   └── page.js
+│   │   │       ├── loading.js
+│   │   │       └── page.js
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   ├── login
+│   │   │   │   │   └── route.js
+│   │   │   │   └── logout
+│   │   │   │       └── route.js
+│   │   │   ├── session
+│   │   │   │   └── route.js
+│   │   │   ├── swagger
+│   │   │   │   └── route.js
+│   │   │   └── users
+│   │   │       ├── [uid]
+│   │   │       │   └── route.js
+│   │   │       └── route.js
+│   │   ├── docs
+│   │   │   └── page.js
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   └── not-found.js
+│   ├── components
+│   │   ├── main-header.js
+│   │   ├── modal-backdrop.js
+│   │   ├── nav-link.js
+│   │   ├── user-profile.js
+│   │   └── users-list.js
+│   ├── db
+│   │   ├── data.db
+│   │   └── users.js
+│   └── swagger
+│       ├── swagger-config.js
+│       └── swagger-doc.js
+├── .env.local
+├── eslint.config.mjs
+├── jsconfig.json
+├── middleware.js
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+└── README.md

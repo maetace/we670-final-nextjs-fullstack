@@ -1,0 +1,254 @@
+/* src/app/globals.css */
+
+/* ===== Global Reset ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #FFF;
+}
+
+/* ===== Typography ===== */
+h1 {
+  font-size: 2em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #FFF;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 2rem 0;
+  color: #DDD;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* ===== Layout Containers ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* ===== Home Page ===== */
+#home {
+  margin: 10rem auto;
+  max-width: 50rem;
+  text-align: center;
+}
+
+.home-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#home a {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: blue;
+  color: #EEE;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+#home a:hover {
+  background-color: darkblue;
+}
+
+/* ===== Users Grid ===== */
+.users {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0;
+}
+
+.user-profile-container {
+  display: grid;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.user {
+  color: #000;
+  background-color: #FFF;
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.user:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.user a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.user-avatar {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.user-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.user-email {
+  font-size: 1em;
+  margin-bottom: 0.5rem;
+}
+
+.user-info {
+  font-size: 1em;
+  margin-bottom: 0.25rem;
+}
+
+/* ===== Modal Avatar (Fullscreen) ===== */
+.fullscreen-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.fullscreen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ===== Error Section ===== */
+.error {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ===== Filter Buttons ===== */
+.filter-controls {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-controls button {
+  padding: 0.5rem 1rem;
+  background: #e1e1e1;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  transition: background 0.2s;
+}
+
+.filter-controls button:hover {
+  background: #ccc;
+}
+
+/* ===== Modal Container ===== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background-color: #FFF;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+}
+
+/* ===== Main Header ===== */
+#main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: #FFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#main-header #logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FFD700;
+  text-decoration: none;
+}
+
+#main-header #logo a:hover {
+  color: #FFA500;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.main-nav li a {
+  color: #EEE;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.main-nav li a:hover {
+  color: #4FC3F7;
+}
+
+nav a.active {
+  color: #FFD700;
+  font-weight: bold;
+  text-decoration: none;
+}
