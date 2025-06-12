@@ -1,5 +1,7 @@
 // src/app/(public)/users/page.js
 
+export const dynamic = 'force-dynamic';
+
 import UsersList from "@/components/users-list";
 import { notFound } from "next/navigation";
 

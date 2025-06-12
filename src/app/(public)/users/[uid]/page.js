@@ -1,4 +1,6 @@
-// src/app/(content)/users/[uid]/page.js
+// src/app/(public)/users/[uid]/page.js
+
+export const dynamic = 'force-dynamic';
 
 import UserProfile from "@/components/user-profile";
 import { notFound } from "next/navigation";
@@ -6,16 +8,30 @@ import { notFound } from "next/navigation";
 export default async function UserProfilePage({ params }) {
     const { uid } = params;
 
-    const res = await fetch(`${process.env.BASE_URL}/api/users/${uid}`, { cache: 'no-store' });
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
 
-    if (!res.ok) notFound();
+    try {
+        const res = await fetch(`${baseUrl}/api/users/${uid}`, {
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    const user = await res.json();
+        if (!res.ok) notFound();
 
-    return (
-        <section>
-            <h1>Thunderbolts* Profile</h1>
-            <UserProfile user={user} />
-        </section>
-    );
+        const user = await res.json();
+
+        if (!user) notFound();
+
+        return (
+            <section>
+                <h1>Thunderbolts* Profile</h1>
+                <UserProfile user={user} />
+            </section>
+        );
+    } catch (error) {
+        console.error("❌ Failed to fetch user:", error);
+        notFound();
+    }
 }

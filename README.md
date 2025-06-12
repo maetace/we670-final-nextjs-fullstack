@@ -2,16 +2,16 @@
 
 # **1. ข้อมูลเบื้องต้น**
 
-| ชื่อระบบงาน:  | Thunderbolts\* Directory |
+| ชื่อระบบงาน:  | Thunderbolts* Directory |
 | :---- | :---- |
 | ผู้จัดทำ: | เมธี นิลรัตน์ (67130893) |
-| วิชา: | WE670 \- การพัฒนาเว็บแอปพลิเคชันขั้นสูง |
+| วิชา: | WE670 - การพัฒนาเว็บแอปพลิเคชันขั้นสูง |
 | อาจาร์ผู้สอน: | Chaloemphon Sirikayon |
 | วันที่สั่งงาน: | 24/05/2025 |
 | กำหนดส่งงาน: | 27/06/2025 11:59 PM |
 | คะแนน: | 30 คะแนน |
-| งาน \-: | ให้นักศึกษาพัฒนาเว็บแอปพลิเคชันเต็มรูปแบบ ที่มีการทำงานทั้งส่วน front-end และ back-end 1 ระบบงาน ด้วยการใช้ Next.js โดยให้มีการติดต่อฐานข้อมูล เพื่อนำข้อมูลมาใช้งาน เพิ่มม ลบ และแก้ไขข้อมูลได้ และมีการทำ User Authentication เพื่อเข้าใช้งานส่วนของเว็บแอปพลิเคชันตามที่ออกแบบไว้ได้ |
-| สิ่งที่ต้องส่ง \-: | 1\.  เอกสารโครงงาน จัดทำเป็นไฟล์ word และ pdf ประกอบด้วย 	1.1  ชื่อระบบงาน, ผู้จัดทำ 	1.2  รายละเอียด และ วัตถุประสงค์การใช้งาน 	1.3  โครงสร้างฐานข้อมูล ER Diagram 	1.4  ผลลัพธ์ของการพัฒนา (หน้าจอ, คำอธิบายรายละเอียดการใช้งานบนหน้าเว็บ) 2\.  นำไฟล์ขึ้น Github สร้าง repository แบบ public แล้วส่ง URL 3\.  สไลด์พรีเซนเตชัน (พรีเซนไม่เกิน 5 นาที) |
+| งาน -: | ให้นักศึกษาพัฒนาเว็บแอปพลิเคชันเต็มรูปแบบ ที่มีการทำงานทั้งส่วน front-end และ back-end 1 ระบบงาน ด้วยการใช้ Next.js โดยให้มีการติดต่อฐานข้อมูล เพื่อนำข้อมูลมาใช้งาน เพิ่มม ลบ และแก้ไขข้อมูลได้ และมีการทำ User Authentication เพื่อเข้าใช้งานส่วนของเว็บแอปพลิเคชันตามที่ออกแบบไว้ได้ |
+| สิ่งที่ต้องส่ง -: | 1.  เอกสารโครงงาน จัดทำเป็นไฟล์ word และ pdf ประกอบด้วย 	1.1  ชื่อระบบงาน, ผู้จัดทำ 	1.2  รายละเอียด และ วัตถุประสงค์การใช้งาน 	1.3  โครงสร้างฐานข้อมูล ER Diagram 	1.4  ผลลัพธ์ของการพัฒนา (หน้าจอ, คำอธิบายรายละเอียดการใช้งานบนหน้าเว็บ) 2.  นำไฟล์ขึ้น Github สร้าง repository แบบ public แล้วส่ง URL 3.  สไลด์พรีเซนเตชัน (พรีเซนไม่เกิน 5 นาที) |
 
 # **2. วัตถุประสงค์และขอบเขตของระบบ**
 
@@ -30,13 +30,13 @@
 
 • สั่ง npx create-next-app@latest we670-final-nextjs-fullstack เพื่อเริ่มโปรเจค  
 	โดยเลือกดังนี้  
-	• Use TypeScript? \`No\`  
-	• Use ESLint? \`Yes\`  
-	• Use Tailwind CSS? \`Yes\`  
-	• Use src/ directory? \`Yes\`  
-	• Use App Router? \`Yes\`  
-	• Customize alias (@) \`No\`  
-	• Use Turbopack? \`No\`
+	• Use TypeScript? `No`  
+	• Use ESLint? `Yes`  
+	• Use Tailwind CSS? `Yes`  
+	• Use src/ directory? `Yes`  
+	• Use App Router? `Yes`  
+	• Customize alias (@) `No`  
+	• Use Turbopack? `No`
 
 ## **2) วางโครงสร้างโฟลเดอร์และไฟล์**
 
@@ -121,10 +121,10 @@
 ```bash  
 git init  
 git add .  
-git commit \-m "Step 1: Initialize project and folder structure"  
-git branch \-M main  
+git commit -m "Step 1: Initialize project and folder structure"  
+git branch -M main  
 git remote add origin git@github.com:maetace/we670-final-nextjs-fullstack.git  
-git push \-u origin main  
+git push -u origin main  
 ```
 
 ## **4) Deploy ขึ้น Vercel**
@@ -143,16 +143,16 @@ git push \-u origin main
 | username | TEXT | UNIQUE, NOT NULL |
 | password | TEXT | NOT NULL |
 | email | TEXT | UNIQUE, NOT NULL |
-| mobile | TEXT | \- |
+| mobile | TEXT | - |
 | avatar | TEXT | URL |
-| fullname | TEXT | \- |
+| fullname | TEXT | - |
 | birthday | TEXT (ISO Date) | YYYY-MM-DD |
 | gender | TEXT | CHECK ENUM |
 | status | TEXT | CHECK, DEFAULT 'active', inactive, pending, banned, deleted |
 | role | TEXT | CHECK, DEFAULT 'member', admin |
-| created\_at | TEXT (Timestamp) | DEFAULT CURRENT\_TIMESTAMP |
-| updated\_at | TEXT (Timestamp) | DEFAULT CURRENT\_TIMESTAMP |
-| last\_login | TEXT (Timestamp) | NULLABLE |
+| created_at | TEXT (Timestamp) | DEFAULT CURRENT_TIMESTAMP |
+| updated_at | TEXT (Timestamp) | DEFAULT CURRENT_TIMESTAMP |
+| last_login | TEXT (Timestamp) | NULLABLE |
 
 # **6. การสร้างและเตรียมฐานข้อมูล**
 
