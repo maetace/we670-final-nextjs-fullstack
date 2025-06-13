@@ -1,4 +1,4 @@
-import './globals.css';
+import '../styles/globals.css';
 
 /**
  * Root layout สำหรับโครงสร้าง HTML หลักของแอป

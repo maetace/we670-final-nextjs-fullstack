@@ -1,0 +1,92 @@
+/* src/styles/user-form.module.css */
+
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #111;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.field label span {
+    color: #e63946;
+    margin-left: 0.25rem;
+}
+
+.field input,
+.field select {
+    padding: 0.75rem 1rem;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #FFD700;
+    background-color: #1a1a1a;
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+
+.buttons button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.buttons button[type="submit"] {
+    background-color: #FFD700;
+    color: #000;
+}
+
+.buttons button[type="submit"]:hover {
+    background-color: #FFA500;
+}
+
+.buttons button[type="button"] {
+    background-color: #333;
+    color: #fff;
+}
+
+.buttons button[type="button"]:hover {
+    background-color: #555;
+}

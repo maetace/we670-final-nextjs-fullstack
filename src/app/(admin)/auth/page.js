@@ -2,8 +2,8 @@
 
 'use client';
 
-import styles from './auth.module.css';
-import { useState } from 'react';
+import styles from '@/styles/auth.module.css';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -13,6 +13,18 @@ export default function LoginPage() {
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
+    // ✅ ตรวจสอบ session ก่อนแสดงหน้า login
+    useEffect(() => {
+        fetch('/api/session')
+            .then(res => res.ok ? res.json() : null)
+            .then(data => {
+                if (data?.user?.uid) {
+                    router.replace('/ciud'); // มี session → ไปหน้า admin
+                }
+            });
+    }, [router]);
+
+    // ✅ ฟังก์ชันเข้าสู่ระบบ
     async function handleLogin(e) {
         e.preventDefault();
         setError('');
@@ -29,7 +41,7 @@ export default function LoginPage() {
             if (!res.ok) {
                 setError(result.message || 'Login failed');
             } else {
-                router.push('/admin');
+                router.push('/ciud');
             }
         } catch (err) {
             console.error('❌ Fetch error:', err);

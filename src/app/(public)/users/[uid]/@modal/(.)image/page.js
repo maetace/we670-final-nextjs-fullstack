@@ -8,7 +8,6 @@ export default async function InterceptedImageModal({ params }) {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
     const res = await fetch(`${baseUrl}/api/users/${params.uid}`, {
-        // ป้องกัน cache เพราะข้อมูล user อาจเปลี่ยน
         cache: 'no-store',
     });
 

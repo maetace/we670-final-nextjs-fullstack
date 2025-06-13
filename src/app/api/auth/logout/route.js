@@ -15,8 +15,9 @@ import { cookies } from 'next/headers';
  */
 export async function POST() {
     try {
-        // ลบ cookie โดยกำหนด path ให้ชัดเจน
-        cookies().delete('session_uid', { path: '/' });
+        // ✅ await cookies() เพื่อรองรับ Edge Runtime
+        const cookieStore = cookies();
+        cookieStore.delete('session_uid', { path: '/' });
 
         return Response.json({ message: 'Logout successful' });
     } catch (error) {

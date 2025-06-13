@@ -38,6 +38,36 @@ p {
   text-align: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: gray;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input,
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  margin: 0.5rem 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #0070f3;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+
+
 /* ===== Layout Containers ===== */
 .container {
   max-width: 1200px;
@@ -156,30 +186,6 @@ p {
 .error {
   text-align: center;
   margin-top: 3rem;
-}
-
-/* ===== Filter Buttons ===== */
-.filter-controls {
-  margin-bottom: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.filter-controls button {
-  padding: 0.5rem 1rem;
-  background: #e1e1e1;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #000;
-  transition: background 0.2s;
-}
-
-.filter-controls button:hover {
-  background: #ccc;
 }
 
 /* ===== Modal Container ===== */

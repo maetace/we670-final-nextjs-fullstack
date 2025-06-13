@@ -1,0 +1,54 @@
+/* src/styles/users-table.module.css */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.table th {
+    background-color: #222;
+    color: #FFD700;
+    font-weight: bold;
+    padding: 0.75rem;
+    border-bottom: 1px solid #FFD700;
+}
+
+.table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #333;
+    background-color: #111;
+}
+
+.table tr:nth-child(even) td {
+    background-color: #1a1a1a;
+}
+
+.edit,
+.delete,
+.view {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.edit {
+    background-color: #FFD700;
+    color: #000;
+}
+
+.delete {
+    background-color: #e63946;
+    color: white;
+}
+
+.view {
+    background-color: #555;
+    color: white;
+}

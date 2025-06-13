@@ -1,6 +1,6 @@
 // src/app/api/auth/session/route.js
 
-import { cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import { getUserById } from '@/db/users';
 
 /**
@@ -20,7 +20,15 @@ import { getUserById } from '@/db/users';
  */
 export async function GET() {
     try {
-        const uid = cookies().get('session_uid')?.value;
+        // ✅ อ่าน cookie จาก headers แทน cookies().get() เพื่อหลีกเลี่ยง runtime error
+        const cookieHeader = headers().get('cookie') || '';
+
+        // ✅ แปลง cookie string → เป็น object key-value
+        const cookies = Object.fromEntries(
+            cookieHeader.split(';').map(c => c.trim().split('='))
+        );
+
+        const uid = cookies['session_uid'];
 
         if (!uid) {
             return new Response(JSON.stringify({ message: 'No session found' }), { status: 401 });
@@ -32,7 +40,7 @@ export async function GET() {
             return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
         }
 
-        // ซ่อน password ด้วย destructuring
+        // ✅ ไม่คืน password กลับไป
         const { password: _, ...safeUser } = user;
 
         return Response.json({ message: 'Session active', user: safeUser });
