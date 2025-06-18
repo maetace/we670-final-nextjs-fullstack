@@ -4,27 +4,30 @@
 
 import Link from 'next/link';
 import NavLink from './nav-link';
+import Image from "next/image";
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function MainHeader() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
     const router = useRouter();
 
     useEffect(() => {
         fetch('/api/session')
             .then(res => res.ok ? res.json() : null)
             .then(data => {
-                if (data?.user?.uid) setIsLoggedIn(true);
+                if (data?.user?.uid) setUser(data.user);
             });
     }, []);
 
     const handleLogout = async (e) => {
-        e.preventDefault(); // ดักไม่ให้ลิงก์ทำงาน
+        e.preventDefault();
         const res = await fetch('/api/auth/logout', { method: 'POST' });
         if (res.ok) {
-            setIsLoggedIn(false);
+            setUser(null);
             router.push('/auth');
+            router.refresh();
         }
     };
 
@@ -37,13 +40,25 @@ export default function MainHeader() {
                 <ul>
                     <li><NavLink href="/">Home</NavLink></li>
                     <li><NavLink href="/users">Users</NavLink></li>
-                    {isLoggedIn ? (
+                    <li><NavLink href="/dashboard">Dashboard</NavLink></li>
+                    {user ? (
                         <>
                             <li><NavLink href="/ciud">CIUD</NavLink></li>
                             <li>
                                 <a href="/auth" onClick={handleLogout} role="button" className="nav-link">
                                     Logout
                                 </a>
+                            </li>
+                            <li>
+                                <Link href={`/users/${user.uid}`}>
+                                    <Image
+                                        src={user.avatar}
+                                        alt={user.fullname}
+                                        width={32}
+                                        height={32}
+                                        style={{ borderRadius: '50%', cursor: 'pointer' }}
+                                    />
+                                </Link>
                             </li>
                         </>
                     ) : (

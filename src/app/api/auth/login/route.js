@@ -1,6 +1,6 @@
 // src/app/api/auth/login/route.js
 
-import { getUserWithPassword } from '@/db/users';  // ✅ แทน getAllUsers
+import { getUserWithPassword } from '@/db/users';
 import { cookies } from 'next/headers';
 import bcrypt from 'bcryptjs';
 
@@ -43,7 +43,7 @@ export async function POST(request) {
             return new Response(JSON.stringify({ message: 'Missing credentials' }), { status: 400 });
         }
 
-        const user = await getUserWithPassword(username);  // ✅ ดึง user พร้อม password
+        const user = await getUserWithPassword(username);
 
         if (!user || !bcrypt.compareSync(password, user.password)) {
             return new Response(JSON.stringify({ message: 'Invalid username or password' }), { status: 401 });
@@ -53,9 +53,10 @@ export async function POST(request) {
             return new Response(JSON.stringify({ message: 'Account is not active' }), { status: 403 });
         }
 
-        cookies().set('session_uid', user.uid, {
+        const cookieStore = cookies();
+        cookieStore.set('session_uid', user.uid, {
             httpOnly: true,
-            maxAge: 60 * 60 * 24,
+            maxAge: 60 * 60 * 24, // 1 วัน
             path: '/',
             sameSite: 'lax',
             secure: process.env.NODE_ENV === 'production'

@@ -41,7 +41,9 @@ export default function LoginPage() {
             if (!res.ok) {
                 setError(result.message || 'Login failed');
             } else {
-                router.push('/ciud');
+                // router.push('/ciud');
+                // router.refresh();
+                window.location.href = '/ciud';;
             }
         } catch (err) {
             console.error('❌ Fetch error:', err);

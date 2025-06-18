@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.resolve(__dirname, '../src/db/data.db');
+const dbPath = path.resolve(__dirname, '../db/data.db');
 const db = new Database(dbPath);
 
 const users = [
@@ -138,7 +138,7 @@ const users = [
         birthday: '1978-09-03',
         gender: 'male',
         status: 'banned',
-        role: 'member'
+        role: 'admin'
     }
 ];
 

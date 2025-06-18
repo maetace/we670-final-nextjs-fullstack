@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.resolve(__dirname, '../src/db/data.db'); // จุดเชื่อมไปยัง SQLite DB
+const dbPath = path.resolve(__dirname, '../db/data.db'); // จุดเชื่อมไปยัง SQLite DB
 
 const db = new Database(dbPath);
 

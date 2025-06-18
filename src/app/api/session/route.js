@@ -20,12 +20,13 @@ import { getUserById } from '@/db/users';
  */
 export async function GET() {
     try {
-        // ✅ อ่าน cookie จาก headers แทน cookies().get() เพื่อหลีกเลี่ยง runtime error
         const cookieHeader = headers().get('cookie') || '';
 
-        // ✅ แปลง cookie string → เป็น object key-value
         const cookies = Object.fromEntries(
-            cookieHeader.split(';').map(c => c.trim().split('='))
+            cookieHeader
+                .split(';')
+                .map((c) => c.trim().split('='))
+                .filter(([key, value]) => key && value)
         );
 
         const uid = cookies['session_uid'];
@@ -40,7 +41,6 @@ export async function GET() {
             return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
         }
 
-        // ✅ ไม่คืน password กลับไป
         const { password: _, ...safeUser } = user;
 
         return Response.json({ message: 'Session active', user: safeUser });

@@ -1,16 +1,16 @@
 .
-├── seed
-│   ├── create-db.js
-│   └── seed-users.js
 ├── src
 │   ├── app
 │   │   ├── (admin)
 │   │   │   ├── auth
-│   │   │   │   ├── auth.module.css
 │   │   │   │   └── page.js
-│   │   │   ├── layout.js
-│   │   │   └── user
+│   │   │   ├── ciud
+│   │   │   │   └── page.js
+│   │   │   └── layout.js
 │   │   ├── (public)
+│   │   │   ├── dashboard
+│   │   │   │   ├── loading.js
+│   │   │   │   └── page.js
 │   │   │   ├── layout.js
 │   │   │   ├── loading.js
 │   │   │   ├── page.js
@@ -27,8 +27,6 @@
 │   │   │       │   ├── loading.js
 │   │   │       │   ├── not-found.js
 │   │   │       │   └── page.js
-│   │   │       ├── active
-│   │   │       │   └── page.js
 │   │   │       ├── loading.js
 │   │   │       └── page.js
 │   │   ├── api
@@ -39,6 +37,8 @@
 │   │   │   │       └── route.js
 │   │   │   ├── session
 │   │   │   │   └── route.js
+│   │   │   ├── stats
+│   │   │   │   └── route.js
 │   │   │   ├── swagger
 │   │   │   │   └── route.js
 │   │   │   └── users
@@ -47,25 +47,47 @@
 │   │   │       └── route.js
 │   │   ├── docs
 │   │   │   └── page.js
-│   │   ├── globals.css
 │   │   ├── layout.js
 │   │   └── not-found.js
 │   ├── components
+│   │   ├── card-stat.js
 │   │   ├── main-header.js
 │   │   ├── modal-backdrop.js
 │   │   ├── nav-link.js
+│   │   ├── user-form.js
 │   │   ├── user-profile.js
-│   │   └── users-list.js
+│   │   ├── users-age-chart.js
+│   │   ├── users-card.js
+│   │   ├── users-chart.js
+│   │   ├── users-filter.js
+│   │   ├── users-list.js
+│   │   ├── users-role-chart.js
+│   │   └── users-table.js
 │   ├── db
 │   │   ├── data.db
+│   │   ├── seed
+│   │   │   ├── create-db.js
+│   │   │   └── seed-users.js
 │   │   └── users.js
+│   ├── middleware.js
+│   ├── styles
+│   │   ├── auth.module.css
+│   │   ├── ciud.module.css
+│   │   ├── dashboard.module.css
+│   │   ├── globals.css
+│   │   ├── modal-backdrop.css
+│   │   ├── user-form.module.css
+│   │   ├── users-card.module.css
+│   │   ├── users-chart.module.css
+│   │   ├── users-filter.module.css
+│   │   ├── users-role-chart.module.css
+│   │   └── users-table.module.css
 │   └── swagger
 │       ├── swagger-config.js
 │       └── swagger-doc.js
 ├── .env.local
 ├── eslint.config.mjs
 ├── jsconfig.json
-├── middleware.js
 ├── next.config.mjs
 ├── package-lock.json
 ├── package.json

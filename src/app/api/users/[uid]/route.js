@@ -1,13 +1,12 @@
-// src/app/api/users/[uid]/route.js
-
 import { getUserById, getAllUsers, updateUser, deleteUser } from '@/db/users';
+import { cookies } from 'next/headers';
 import bcrypt from 'bcryptjs';
 
 /**
  * @swagger
  * /api/users/{uid}:
  *   get:
- *     summary: ดึงข้อมูลผู้ใช้ตาม UID
+ *     summary: ดึงข้อมูลผู้ใช้ตาม UID (public)
  *     parameters:
  *       - in: path
  *         name: uid
@@ -25,15 +24,14 @@ import bcrypt from 'bcryptjs';
  */
 export async function GET(_, { params }) {
     try {
-        const user = await getUserById(params.uid);
-
-        if (!user) {
+        const targetUser = await getUserById(params.uid);
+        if (!targetUser) {
             return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
         }
 
-        return Response.json(user);
+        return Response.json(targetUser);
     } catch (error) {
-        console.error('Error loading user:', error);
+        console.error('❌ Error loading user:', error);
         return new Response(JSON.stringify({ message: 'Failed to load user' }), { status: 500 });
     }
 }
@@ -42,7 +40,7 @@ export async function GET(_, { params }) {
  * @swagger
  * /api/users/{uid}:
  *   put:
- *     summary: แก้ไขข้อมูลผู้ใช้ตาม UID
+ *     summary: แก้ไขข้อมูลผู้ใช้ตาม UID (login required)
  *     parameters:
  *       - in: path
  *         name: uid
@@ -57,35 +55,23 @@ export async function GET(_, { params }) {
  *           schema:
  *             type: object
  *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
- *               email:
- *                 type: string
- *               mobile:
- *                 type: string
- *               avatar:
- *                 type: string
- *               fullname:
- *                 type: string
- *               birthday:
- *                 type: string
- *                 format: date
- *               gender:
- *                 type: string
- *                 enum: [male, female]
- *               status:
- *                 type: string
- *                 enum: [active, inactive, pending, banned, deleted]
- *               role:
- *                 type: string
- *                 enum: [member, admin]
+ *               username: { type: string }
+ *               password: { type: string }
+ *               email: { type: string }
+ *               mobile: { type: string }
+ *               avatar: { type: string }
+ *               fullname: { type: string }
+ *               birthday: { type: string, format: date }
+ *               gender: { type: string, enum: [male, female] }
+ *               status: { type: string, enum: [active, inactive, pending, banned, deleted] }
+ *               role: { type: string, enum: [member, admin] }
  *     responses:
  *       200:
  *         description: อัปเดตสำเร็จ
- *       400:
- *         description: ข้อมูลไม่ถูกต้อง
+ *       401:
+ *         description: ต้องเข้าสู่ระบบก่อน
+ *       403:
+ *         description: ไม่มีสิทธิ์เข้าถึง
  *       404:
  *         description: ไม่พบผู้ใช้
  *       409:
@@ -96,8 +82,21 @@ export async function GET(_, { params }) {
 export async function PUT(request, { params }) {
     try {
         const uid = params.uid;
-        const updates = await request.json();
+        const cookieStore = cookies();
+        const sessionUid = cookieStore.get('session_uid')?.value;
 
+        if (!sessionUid) return new Response(JSON.stringify({ message: 'Unauthorized' }), { status: 401 });
+
+        const sessionUser = await getUserById(sessionUid);
+        if (!sessionUser || sessionUser.status !== 'active') {
+            return new Response(JSON.stringify({ message: 'Forbidden' }), { status: 403 });
+        }
+
+        if (sessionUser.role !== 'admin' && sessionUser.uid !== uid) {
+            return new Response(JSON.stringify({ message: 'Forbidden' }), { status: 403 });
+        }
+
+        const updates = await request.json();
         const existingUser = await getUserById(uid);
         if (!existingUser) {
             return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
@@ -133,7 +132,7 @@ export async function PUT(request, { params }) {
  * @swagger
  * /api/users/{uid}:
  *   delete:
- *     summary: ลบผู้ใช้ตาม UID
+ *     summary: ลบผู้ใช้ตาม UID (login required)
  *     parameters:
  *       - in: path
  *         name: uid
@@ -144,11 +143,29 @@ export async function PUT(request, { params }) {
  *     responses:
  *       200:
  *         description: ลบผู้ใช้สำเร็จ
+ *       401:
+ *         description: ต้องเข้าสู่ระบบก่อน
+ *       403:
+ *         description: ไม่มีสิทธิ์เข้าถึง
  *       500:
  *         description: ลบล้มเหลว
  */
 export async function DELETE(_, { params }) {
     try {
+        const cookieStore = cookies();
+        const sessionUid = cookieStore.get('session_uid')?.value;
+
+        if (!sessionUid) return new Response(JSON.stringify({ message: 'Unauthorized' }), { status: 401 });
+
+        const sessionUser = await getUserById(sessionUid);
+        if (!sessionUser || sessionUser.status !== 'active') {
+            return new Response(JSON.stringify({ message: 'Forbidden' }), { status: 403 });
+        }
+
+        if (sessionUser.role !== 'admin' && sessionUser.uid !== params.uid) {
+            return new Response(JSON.stringify({ message: 'Forbidden' }), { status: 403 });
+        }
+
         await deleteUser(params.uid);
         return new Response(JSON.stringify({ message: 'User deleted' }));
     } catch (error) {

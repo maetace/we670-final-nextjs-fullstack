@@ -15,7 +15,6 @@ import { cookies } from 'next/headers';
  */
 export async function POST() {
     try {
-        // ✅ await cookies() เพื่อรองรับ Edge Runtime
         const cookieStore = cookies();
         cookieStore.delete('session_uid', { path: '/' });
 

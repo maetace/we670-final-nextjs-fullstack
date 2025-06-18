@@ -8,7 +8,10 @@ import bcrypt from 'bcryptjs';
  * /api/users:
  *   get:
  *     summary: ดึงผู้ใช้ทั้งหมด หรือกรองตาม status, gender, role
- *     description: ส่ง query string เพื่อกรองผู้ใช้ เช่น `status=active&gender=female`
+ *     description: |
+ *       Public API สำหรับดึงรายชื่อผู้ใช้งานทั้งหมด
+ *       รองรับการกรองข้อมูลตาม status, gender, role
+ *       ไม่ต้อง login ก็สามารถเรียกใช้งานได้
  *     parameters:
  *       - in: query
  *         name: status
@@ -110,7 +113,6 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-
     const { username, password, email } = body;
 
     if (!username || !password || !email) {
