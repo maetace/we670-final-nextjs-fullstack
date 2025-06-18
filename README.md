@@ -423,8 +423,6 @@ git push -u origin main
 
 # **10. รายการสิ่งที่ส่ง (Submission Checklist)**
 
-# **10. รายการสิ่งที่ส่ง (Submission Checklist)**
-
 | ลำดับ | รายการ | สถานะ | หมายเหตุ |
 | :---: | ----- | :---: | ----- |
 | 1. | เอกสารโครงงาน  จัดทำเป็นไฟล์ word และ pdf | ✅ | we670-final-nextjs-67130893.docx we670-final-nextjs-67130893.pdf |
